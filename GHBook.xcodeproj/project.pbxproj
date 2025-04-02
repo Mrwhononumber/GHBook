@@ -14,7 +14,7 @@
 		8B83DCCC2D9D2E6E0039AA6D /* Exceptions for "GHBook" folder in "GHBook" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Support/Info.plist,
 			);
 			target = 8B83DCB92D9D2E6D0039AA6D /* GHBook */;
 		};
