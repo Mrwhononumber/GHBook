@@ -147,7 +147,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9X6CS5GN5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GHBook/Info.plist;
+				INFOPLIST_FILE = GHBook/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -177,7 +177,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9X6CS5GN5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GHBook/Info.plist;
+				INFOPLIST_FILE = GHBook/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

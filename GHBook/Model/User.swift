@@ -1,0 +1,22 @@
+//
+//  User.swift
+//  GHBook
+//
+//  Created by Basem Elkady on 4/3/25.
+//
+
+import Foundation
+
+struct User {
+    var login: String
+    var avatarUrl: String
+    var name: String?
+    var location: String?
+    var bio: String?
+    var publicRepos: Int
+    var pubilcGists: Int
+    var htmlUrl: String
+    var following: Int
+    var followers: Int
+    var createdAt: String
+}
