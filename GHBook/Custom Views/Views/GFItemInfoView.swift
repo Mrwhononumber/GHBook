@@ -57,7 +57,7 @@ class GFItemInfoView: UIView {
     }
     
     
-    func ser(item: itemInfoType, withCount count: Int) {
+    func set(item: itemInfoType, withCount count: Int) {
         switch item {
         case .repos:
             symbolImageView.image = UIImage(systemName: SFSymbols.repos)
