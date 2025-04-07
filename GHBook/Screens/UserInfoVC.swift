@@ -10,17 +10,28 @@ import UIKit
 class UserInfoVC: UIViewController {
     
     let headerView = UIView()
+    let itemViewOne = UIView()
+    let itemViewTwo = UIView()
     
     var username: String!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewController()
+        layoutUI()
+        getUserInfo()
+    }
+    
+    
+    func configureViewController() {
         view.backgroundColor = .systemBackground
         let doneButtone = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
         navigationItem.rightBarButtonItem = doneButtone
-        
-        layoutUI()
-         
+    }
+    
+    
+    func getUserInfo() {
         NetworkManager.shared.getUserInfo(for: username) {[weak self] result in
             guard let self = self else { return }
             switch result {
@@ -39,18 +50,35 @@ class UserInfoVC: UIViewController {
     
     func layoutUI() {
         view.addSubview(headerView)
+        view.addSubview(itemViewOne)
+        view.addSubview(itemViewTwo)
+        
+        itemViewOne.backgroundColor = .systemPink
+        itemViewTwo.backgroundColor = .systemBlue
+        
         headerView.translatesAutoresizingMaskIntoConstraints = false
+        itemViewOne.translatesAutoresizingMaskIntoConstraints = false
+        itemViewTwo.translatesAutoresizingMaskIntoConstraints = false
+        
+        let padding:CGFloat = 20
+        let itemViewHeight:CGFloat = 140
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            headerView.heightAnchor.constraint(equalToConstant: 180)
+            headerView.heightAnchor.constraint(equalToConstant: 180),
             
+            itemViewOne.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
+            itemViewOne.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            itemViewOne.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            itemViewOne.heightAnchor.constraint(equalToConstant: itemViewHeight),
             
-            
+            itemViewTwo.topAnchor.constraint(equalTo: itemViewOne.bottomAnchor, constant: padding),
+            itemViewTwo.leadingAnchor.constraint(equalTo: view .leadingAnchor, constant: padding),
+            itemViewTwo.trailingAnchor.constraint(equalTo: view .trailingAnchor, constant: -padding),
+            itemViewTwo.heightAnchor.constraint(equalToConstant: itemViewHeight)
         ])
-        
     }
     
     
@@ -61,8 +89,8 @@ class UserInfoVC: UIViewController {
         childVC.didMove(toParent: self)
     }
 
+    
     @objc func dismissVC() {
    dismiss(animated: true)
     }
-
 }
