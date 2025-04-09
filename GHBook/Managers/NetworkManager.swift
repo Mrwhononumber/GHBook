@@ -10,6 +10,7 @@ import UIKit
 class NetworkManager {
     static let shared = NetworkManager()
     private let baseUrl = "https://api.github.com/users/"
+    let GitToken = "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"
     let cache = NSCache<NSString, UIImage>()
     
     private init() {}
