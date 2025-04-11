@@ -83,7 +83,7 @@ class FollowerListVC: UIViewController {
                             }
                 if followers.count < 100 { self.hasMoreFollowers = false}
                 self.followers.append(contentsOf: followers)
-                if followers.isEmpty {
+                if followers.isEmpty && page == 1 {
                     let message = " This user has no followers 😢"
                   DispatchQueue.main.async {self.showEmptyStateView(with: message, in: self.view)}
                   
