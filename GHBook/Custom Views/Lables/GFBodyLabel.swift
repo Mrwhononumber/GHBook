@@ -9,25 +9,31 @@ import UIKit
 
 class GFBodyLabel: UILabel {
 
-
+    
+    //MARK: - Initializers
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-        
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(textAlignment:NSTextAlignment) {
+    /// Initializes the label with a specific text alignment
+    init(textAlignment: NSTextAlignment) {
         super.init(frame: .zero)
         self.textAlignment = textAlignment
         configure()
     }
     
+   
+    //MARK: - Configuration
+    
     private func configure() {
-        
         textColor = .secondaryLabel
         font = UIFont.preferredFont(forTextStyle: .body)
         adjustsFontSizeToFitWidth = true
@@ -35,5 +41,4 @@ class GFBodyLabel: UILabel {
         lineBreakMode = .byWordWrapping
         translatesAutoresizingMaskIntoConstraints = false
     }
-
 }
