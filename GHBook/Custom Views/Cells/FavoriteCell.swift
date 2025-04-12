@@ -7,12 +7,18 @@
 
 import UIKit
 
-class favoriteCell: UITableViewCell {
+class FavoriteCell: UITableViewCell {
 
+    // MARK: - Properties
+
+    
     static let reuseID = "favoriteCell"
     
     let avatarImageView = GFAvatarImageView(frame: .zero)
     let usernameLabel = GFTitleLabel(textAlignment: .left, fontSize: 26)
+    
+    
+    // MARK: - Initializers
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -25,12 +31,15 @@ class favoriteCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    /// Configures the cell with a favorite follower's avatar url and username
     func set(favorite: Follower) {
         avatarImageView.downloadImage(from: favorite.avatarUrl)
         usernameLabel.text = favorite.login
     }
     
+    
+    // MARK: - Configuration
+
     
     private func configure() {
         addSubview(avatarImageView)
@@ -38,20 +47,18 @@ class favoriteCell: UITableViewCell {
         
         accessoryType = .disclosureIndicator
         
-        let pading:CGFloat = 12
+        let padding:CGFloat = 12
         
         NSLayoutConstraint.activate([
             avatarImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: pading),
+            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             avatarImageView.heightAnchor.constraint(equalToConstant: 60),
             avatarImageView.widthAnchor.constraint(equalToConstant: 60),
             
             usernameLabel.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
             usernameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 24),
-            usernameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -pading),
+            usernameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             usernameLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-    
-
 }
