@@ -7,14 +7,27 @@
 
 import UIKit
 
+/// A singleton class responsible for making network requests to the GitHub API
 class NetworkManager {
+    
+    
+    // MARK: - Properties
+    
+    
     static let shared = NetworkManager()
     private let baseUrl = "https://api.github.com/users/"
-    let GitToken = "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"
     let cache = NSCache<NSString, UIImage>()
+    
+    
+    //MARK: - Initializer
+    
     
     private init() {}
     
+    
+    // MARK: - Network Methods
+    
+    /// Fetches a list of followers for the specified username
     func getFollowers(for userName: String, page: Int, completed: @escaping (Result <[Follower]?, GFError>) -> Void)  {
         let endPoint = baseUrl + "\(userName)/followers?per_page=100&page=\(page)"
         
@@ -24,7 +37,7 @@ class NetworkManager {
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-          
+            
             if let _ = error {
                 completed(.failure(.unableToComplete))
                 return
@@ -55,17 +68,18 @@ class NetworkManager {
     }
     
     
+    /// Fetches detailed user information for the specified username
     func getUserInfo(for userName: String, completed: @escaping (Result <User, GFError>) -> Void)  {
         let endPoint = baseUrl + "\(userName)"
         
         guard let url = URL(string: endPoint) else {
             completed(.failure(.invalidUsername))
-
+            
             return
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-          
+            
             if let _ = error {
                 completed(.failure(.unableToComplete))
                 return
@@ -93,8 +107,4 @@ class NetworkManager {
         
         task.resume()
     }
-    
-   
-    
-    
 }
