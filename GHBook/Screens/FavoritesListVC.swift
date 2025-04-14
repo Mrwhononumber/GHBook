@@ -7,13 +7,25 @@
 
 import UIKit
 
+/// Displays a list of favorite GitHub users saved by the user
 class FavoritesListVC: UIViewController {
+    
+    
+    // MARK: - UI Elements
+    
     
     let tableView = UITableView()
     
+    
+    // MARK: - Properties
+    
+    
     var favorites: [Follower] = []
     
-
+    
+    // MARK: - Lifecycle
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
@@ -27,32 +39,38 @@ class FavoritesListVC: UIViewController {
     }
     
     
-    func configureViewController() {
+    // MARK: - Configuration
+    
+    
+    private func configureViewController() {
         view.backgroundColor = .systemBackground
         title = "Favorites"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
-    func configureTableView() {
+    private func configureTableView() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
         tableView.rowHeight = 80
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(favoriteCell.self, forCellReuseIdentifier: favoriteCell.reuseID)
+        tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseID)
     }
     
     
-    func getFavorites() {
+    // MARK: - Data
+    
+    /// Loads the saved favorites from PersistenceManager
+    private func getFavorites() {
         PersistenceManager.retriveFavorites { [weak self] result in
-            guard let  self = self else { return }
+            guard let self = self else { return }
             
             switch result {
             case .success(let favorites):
                 if favorites.isEmpty {
-                    self.showEmptyStateView(with: "No Favorites?", in: self.view )
+                    self.showEmptyStateView(with: "You haven't added any favorites yet!", in: self.view )
                 } else {
                     self.favorites = favorites
                     DispatchQueue.main.async {
@@ -60,7 +78,7 @@ class FavoritesListVC: UIViewController {
                         self.view.bringSubviewToFront(self.tableView)
                     }
                 }
-                 
+                
             case .failure(let error):
                 self.presentGFAlertOnMainThread(title: "Something went wrong", message:error.rawValue, buttonTitle: "Ok")
             }
@@ -68,13 +86,17 @@ class FavoritesListVC: UIViewController {
     }
 }
 
+
+// MARK: - UITableViewDelegate & UITableViewDataSource
+
+
 extension FavoritesListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         favorites.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: favoriteCell.reuseID) as! favoriteCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID) as! FavoriteCell
         let favorite = favorites[indexPath.row]
         cell.set(favorite: favorite)
         return cell
@@ -87,7 +109,7 @@ extension FavoritesListVC: UITableViewDelegate, UITableViewDataSource {
         destinationVC.username = favorite.login
         destinationVC.title = favorite.login
         
-        navigationController?.pushViewController(destinationVC, animated: true )
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
     
     
