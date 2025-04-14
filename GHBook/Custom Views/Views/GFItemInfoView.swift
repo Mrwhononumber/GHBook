@@ -7,25 +7,38 @@
 
 import UIKit
 
-enum itemInfoType {
+/// Types of user information displayed in the item view
+enum ItemInfoType {
     case repos, gists, followers, following
 }
 
+/// A reusable view that displays a symbol, a title, and a numeric value (e.g., follower count)
 class GFItemInfoView: UIView {
+    
+    
+    // MARK: - UI Elements
+    
     
     let symbolImageView = UIImageView()
     let titleLabel = GFTitleLabel(textAlignment: .left, fontSize: 14)
     let countLabel = GFTitleLabel(textAlignment: .center, fontSize: 14)
     
 
+    //MARK: - Initializers
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    //MARK: - Configure
     
     
     private func configure() {
@@ -57,14 +70,17 @@ class GFItemInfoView: UIView {
     }
     
     
-    func set(item: itemInfoType, withCount count: Int) {
+    // MARK: - Public Method
+
+    /// Configures the view based on the info type and count
+    func set(item: ItemInfoType, withCount count: Int) {
         switch item {
         case .repos:
             symbolImageView.image = UIImage(systemName: SFSymbols.repos)
             titleLabel.text = "Public Repos"
         case .gists:
             symbolImageView.image = UIImage(systemName: SFSymbols.gists)
-            titleLabel.text = "Public Gists "
+            titleLabel.text = "Public Gists"
         case .followers:
             symbolImageView.image = UIImage(systemName: SFSymbols.followers)
             titleLabel.text = "Followers"
