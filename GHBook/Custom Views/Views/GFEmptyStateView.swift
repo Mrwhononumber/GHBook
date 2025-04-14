@@ -7,20 +7,31 @@
 
 import UIKit
 
+/// A reusable view that displays a placeholder message and image when no data is available
 class GFEmptyStateView: UIView {
+    
+    
+    //MARK: - Properties
+    
     
     let messageLabel = GFTitleLabel(textAlignment: .center, fontSize: 28)
     let logoImageView = UIImageView()
 
+    
+    //MARK: - Initializers
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Initializes the view with a specific message
     init(message: String) {
         super.init(frame: .zero)
         messageLabel.text = message
@@ -28,6 +39,9 @@ class GFEmptyStateView: UIView {
     }
     
  
+    //MARK: - Configuration
+    
+    
     private func configure(){
         addSubview(messageLabel)
         addSubview(logoImageView)
