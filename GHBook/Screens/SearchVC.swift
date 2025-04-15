@@ -7,15 +7,27 @@
 
 import UIKit
 
+/// The initial screen where users enter a GitHub username to search for followers
 class SearchVC: UIViewController {
-
+    
+  
+    // MARK: - UI Elements
+    
     
     let logoImageView = UIImageView()
     let usernameTextField = GFTextField()
     let callToActionButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
+
+    
+    // MARK: - Computed Properties
+
+    
     var isUserNameEntered: Bool {
-        return !usernameTextField.text!.isEmpty
+        return !(usernameTextField.text ?? "").isEmpty
     }
+    
+    
+    // MARK: - Lifecycle
     
     
     override func viewDidLoad() {
@@ -25,52 +37,56 @@ class SearchVC: UIViewController {
         configureUserTextField()
         configureCallToActionButton()
         createDismissKeyboardTapGesture()
-        
-
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        usernameTextField.text = ""
         navigationController?.isNavigationBarHidden = true
     }
     
     
-    func createDismissKeyboardTapGesture() {
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+    // MARK: - Actions
+    
+    /// Dismisses the keyboard when the user taps outside the text field
+    private func createDismissKeyboardTapGesture() {
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
     }
     
+    /// Validates input and pushes the follower list screen
     @objc func pushFollowerListVC() {
-        
         guard isUserNameEntered else {
-            presentGFAlertOnMainThread(title: "Empty Username", message: "Please enter a user name. We've got to know who to look for 😎", buttonTitle: "Ok")
+            presentGFAlertOnMainThread(title: "Empty Username", message: "Please enter a username so we know who to look for  😎", buttonTitle: "Ok")
             return}
-
+        
+        usernameTextField.resignFirstResponder()
+        
         let followerListVC = FollowerListVC()
         followerListVC.username = usernameTextField.text
         followerListVC.title = usernameTextField.text
         navigationController?.pushViewController(followerListVC, animated: true)
-        
-        
     }
     
     
-    func configureLogoImageView() {
+    // MARK: - UI Configuration
+    
+    
+    private func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.image = UIImage(named: "gh-logo")
-        
+        logoImageView.image = Images.ghLogo
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.heightAnchor.constraint(equalToConstant: 200),
             logoImageView.widthAnchor.constraint(equalToConstant: 200)
-            
         ])
-        
     }
     
-    func configureUserTextField() {
+    
+    private func configureUserTextField() {
         view.addSubview(usernameTextField)
         usernameTextField.delegate = self
         
@@ -84,7 +100,7 @@ class SearchVC: UIViewController {
     }
     
     
-    func configureCallToActionButton() {
+    private func configureCallToActionButton() {
         view.addSubview(callToActionButton)
         callToActionButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
         
@@ -95,8 +111,11 @@ class SearchVC: UIViewController {
             callToActionButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-
 }
+
+
+// MARK: - UITextFieldDelegate
+
 
 extension SearchVC: UITextFieldDelegate {
     
@@ -104,8 +123,4 @@ extension SearchVC: UITextFieldDelegate {
         pushFollowerListVC()
         return true
     }
-    
-    
-    
-    
 }
