@@ -7,12 +7,21 @@
 
 import UIKit
 
+/// Displays a paginated and searchable list of followers for a given GitHub username
 class FollowerListVC: UIViewController {
     
-    enum section {
+    
+    // MARK: - Section Enum
+    
+    
+    enum Section {
         case main
     }
 
+    
+    // MARK: - Properties
+    
+    
     var username: String!
     var followers: [Follower] = []
     var filteredFollowers: [Follower] = []
@@ -21,8 +30,12 @@ class FollowerListVC: UIViewController {
     var isSearching = false
     
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource <section, Follower>!
+    var dataSource: UICollectionViewDiffableDataSource <Section, Follower>!
 
+    
+    // MARK: - Lifecycle
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
@@ -32,10 +45,15 @@ class FollowerListVC: UIViewController {
         configureDataSource()
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.isNavigationBarHidden = false
     }
+    
+    
+    // MARK: - Configuration
+    
     
     func configureViewController() {
         view.backgroundColor = .systemBackground
@@ -53,22 +71,22 @@ class FollowerListVC: UIViewController {
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
     }
     
+    
     func configureSearchController(){
-        
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         navigationItem.hidesSearchBarWhenScrolling = false
-
+        
         
         searchController.searchBar.placeholder = "Search for a user"
         navigationItem.searchController = searchController
-         
-        
-        
     }
     
-
+    
+    // MARK: - Networking & Data
+    
+    /// Fetches followers for a given username and appends them to the current list
     func getFollowers(username: String, page: Int){
         showLoadingView()
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
@@ -97,16 +115,18 @@ class FollowerListVC: UIViewController {
         }
     }
     
+    
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource <section, Follower> (collectionView: collectionView, cellProvider: { collectionView, indexPath, follwoer in
+        dataSource = UICollectionViewDiffableDataSource <Section, Follower> (collectionView: collectionView, cellProvider: { collectionView, indexPath, follwoer in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCell.reuseID, for: indexPath) as! FollowerCell
             cell.set(follower: follwoer)
             return cell
         })
     }
     
+    /// Applies the updated follower list to the collection view using diffable data source
     func updateData(on followers: [Follower]) {
-        var snapshot = NSDiffableDataSourceSnapshot<section, Follower>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
         snapshot.appendItems(followers)
         DispatchQueue.main.async {
@@ -115,6 +135,9 @@ class FollowerListVC: UIViewController {
     }
     
     
+    //MARK: - Action
+    
+    /// Fetches user info and adds them to favorites when the "+" button is tapped
     @objc func addButtonTapped () {
         showLoadingView()
         
@@ -129,7 +152,7 @@ class FollowerListVC: UIViewController {
                 PersistenceManager.updateWith(favorite: favorite, actionType: .add) { [weak self] error in
                     guard let self = self else { return }
                     guard let error = error else {
-                        self.presentGFAlertOnMainThread(title: "Success! ", message: "saved to favories succesfully!", buttonTitle: "Ok")
+                        self.presentGFAlertOnMainThread(title: "Success! ", message: "saved to favorites successfully!", buttonTitle: "Ok")
                         return
                     }
                     self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
@@ -139,21 +162,35 @@ class FollowerListVC: UIViewController {
             }
         }
     }
+    
+    
+    //MARK: - Scroll Pagination Logic
+
+    /// Returns true if the user has scrolled to the bottom and more data is available
+    private func shouldFetchMoreFollowers(from scrollView: UIScrollView) -> Bool {
+        let offsetY = scrollView.contentOffset.y // The vertical distance the user has scrolled from the top of the content area
+        let contentHeight = scrollView.contentSize.height // The total height of all the content within the scrollView
+        let visibleHeight = scrollView.frame.size.height // The height of the visible area of the scrollView (what you can see on the screen)
+        
+        let isScrolledToBottom = offsetY + visibleHeight >= contentHeight
+        
+        return isScrolledToBottom && hasMoreFollowers
+    }
 }
+
+
+//MARK: - CollectionView Delegate
 
 
 extension FollowerListVC: UICollectionViewDelegate {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let offSetY = scrollView.contentOffset.y // The vertical distance the user has scrolled from the top of the content area
-        let contentHeight = scrollView.contentSize.height // The total height of all the content within the scrollView
-        let height = scrollView.frame.size.height // The height of the visible area of the scrollView (what you can see on the screen)
-        
-        if offSetY + height >= contentHeight {
+        if shouldFetchMoreFollowers(from: scrollView) {
             page += 1
             getFollowers(username: username, page: page )
         }
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeArray = isSearching ? filteredFollowers : followers
@@ -167,13 +204,19 @@ extension FollowerListVC: UICollectionViewDelegate {
     }
 }
 
+
+//MARK: - SearchBar & SearchResultsUpdating Delegate
+
+
 extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
+    
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
         isSearching = true
         filteredFollowers = followers.filter {$0.login.lowercased().contains(filter.lowercased()) }
         updateData(on: filteredFollowers)
     }
+    
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
@@ -182,7 +225,12 @@ extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
 }
 
 
+//MARK: - UserInfoVC Delegate
+
+
 extension FollowerListVC: UserInfoVCDelegate {
+ 
+    /// Reloads the follower list when a new username is passed from UserInfoVC
     func didRequestFollowers(for user: User) {
         let username = user.login
         self.username = username
