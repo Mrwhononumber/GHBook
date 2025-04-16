@@ -9,6 +9,7 @@ import UIKit
 
 struct UIHelper {
     
+    /// Creates a UICollectionViewFlowLayout configured for a 3-column grid
     static func createThreeColumnFlowLayout(in view: UIView ) -> UICollectionViewFlowLayout {
         let width = view.bounds.width // The whole screen width
         let padding: CGFloat = 12
@@ -21,6 +22,5 @@ struct UIHelper {
         flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 40 )
         
         return flowLayout
-        
     }
 }
