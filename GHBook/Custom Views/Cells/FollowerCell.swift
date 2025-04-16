@@ -35,6 +35,9 @@ class FollowerCell: UICollectionViewCell {
     /// Configures the cell with a Follower's username and avatar image
     func set(follower: Follower) {
         usernameLabel.text = follower.login
+        
+        // Reset to placeholder to avoid showing wrong image during cell reuse
+        avatarImageView.image = UIImage(named: "avatar-placeholder")
         avatarImageView.downloadImage(from: follower.avatarUrl)
     }
     
