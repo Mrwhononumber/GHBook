@@ -10,7 +10,7 @@ Built using **UIKit**, powered by the **GitHub API**, and designed to practice c
 ### 📸 Screenshots
 
 <p float="left">
-<img src="https://github.com/Mrwhononumber/Images/blob/main/GHBook/GHFBOOK%201.png?raw=true" width="155"> <img src="https://github.com/Mrwhononumber/Images/blob/main/GHBook/GHFBOOK%202.png?raw=true" width="155"> <img src="https://github.com/Mrwhononumber/Images/blob/main/GHBook/GHFBOOK%203.png?raw=true" width="155"> <img src="https://github.com/Mrwhononumber/Images/blob/main/GHBook/GHFBOOK%204.png?raw=true" width="155">
+<img src="https://github.com/Mrwhononumber/Images/blob/main/GHBook/GHFBOOK%20-%20No%20BG%201%20.png?raw=true" width="155"> <img src="https://github.com/Mrwhononumber/Images/blob/main/GHBook/GHFBOOK%20-%20No%20BG%202.png?raw=true" width="155"> <img src="https://github.com/Mrwhononumber/Images/blob/main/GHBook/GHFBOOK%20-%20No%20BG%203.png?raw=true" width="155"> <img src="https://github.com/Mrwhononumber/Images/blob/main/GHBook/GHFBOOK%20-%20No%20BG%204.png?raw=true" width="155">
 </p>
 
 ---
@@ -31,6 +31,7 @@ Built using **UIKit**, powered by the **GitHub API**, and designed to practice c
 
 - ✅ **Architecture:** MVC with clearly separated concerns
 - ✅ **UI:** Programmatic layout using Auto Layout
+- ✅ **UI:** Support dark mode
 - ✅ **Networking:** `URLSession` with custom error handling
 - ✅ **Persistence:** `UserDefaults` for saving favorites
 - ✅ **Image Caching:** Lightweight in-memory cache via `NSCache`
@@ -43,7 +44,6 @@ Built using **UIKit**, powered by the **GitHub API**, and designed to practice c
 
 - [ ] Migrate network layer to `async/await`
 - [ ] Add unit tests to core logic and network layer
-- [ ] Support dark mode UI
 - [ ] Expand user profile view with more data
 
 ---
