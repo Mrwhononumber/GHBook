@@ -16,7 +16,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8B83DCCC2D9D2E6E0039AA6D /* Exceptions for "GHBook" folder in "GHBook" target */ = {
+		8B535D262DB0EE3D00EC298E /* Exceptions for "GHBook" folder in "GHBook" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Support/Info.plist,
@@ -29,7 +29,7 @@
 		8B83DCBC2D9D2E6D0039AA6D /* GHBook */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				8B83DCCC2D9D2E6E0039AA6D /* Exceptions for "GHBook" folder in "GHBook" target */,
+				8B535D262DB0EE3D00EC298E /* Exceptions for "GHBook" folder in "GHBook" target */,
 			);
 			path = GHBook;
 			sourceTree = "<group>";
