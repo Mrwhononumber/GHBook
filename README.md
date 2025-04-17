@@ -1,9 +1,3 @@
-//
-//  README.md
-//  GHBook
-//
-//  Created by Basem Elkady on 4/16/25.
-//
 
 # GitHub Followers Book 📖
 
@@ -16,9 +10,7 @@ Built using **UIKit**, powered by the **GitHub API**, and designed to practice c
 ### 📸 Screenshots
 
 <p float="left">
-  <img src="https://github.com/Mrwhononumber/Images/blob/bbc82dfd03515b24c0357e2b9001e20c12124b13/GHBook/Simulator%20Screenshot%20-%20iPhone%2016%20-%202025-04-15%20at%2011.32.29.png" width="180"/>
-  <img src="https://github.com/Mrwhononumber/Images/blob/bbc82dfd03515b24c0357e2b9001e20c12124b13/GHBook/Simulator%20Screenshot%20-%20iPhone%2016%20-%202025-04-15%20at%2011.32.55.png" width="180"/>
-  <img src="https://github.com/Mrwhononumber/Images/blob/bbc82dfd03515b24c0357e2b9001e20c12124b13/GHBook/Simulator%20Screenshot%20-%20iPhone%2016%20-%202025-04-15%20at%2011.33.28.png"/>
+<img src="https://github.com/Mrwhononumber/Images/blob/main/GHBook/GHFBOOK%201.png?raw=true" width="155"> <img src="https://github.com/Mrwhononumber/Images/blob/main/GHBook/GHFBOOK%202.png?raw=true" width="155"> <img src="https://github.com/Mrwhononumber/Images/blob/main/GHBook/GHFBOOK%203.png?raw=true" width="155"> <img src="https://github.com/Mrwhononumber/Images/blob/main/GHBook/GHFBOOK%204.png?raw=true" width="155">
 </p>
 
 ---
