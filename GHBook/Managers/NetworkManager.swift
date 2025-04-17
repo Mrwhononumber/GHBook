@@ -10,7 +10,6 @@ import UIKit
 /// A singleton class responsible for making network requests to the GitHub API
 class NetworkManager {
     
-    
     // MARK: - Properties
     
     

@@ -10,7 +10,6 @@ import UIKit
 /// The initial screen where users enter a GitHub username to search for followers
 class SearchVC: UIViewController {
     
-  
     // MARK: - UI Elements
     
     

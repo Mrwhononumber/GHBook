@@ -15,7 +15,6 @@ enum ItemInfoType {
 /// A reusable view that displays a symbol, a title, and a numeric value (e.g., follower count)
 class GFItemInfoView: UIView {
     
-    
     // MARK: - UI Elements
     
     

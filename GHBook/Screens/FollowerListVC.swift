@@ -10,7 +10,6 @@ import UIKit
 /// Displays a paginated and searchable list of followers for a given GitHub username
 class FollowerListVC: UIViewController {
     
-    
     // MARK: - Section Enum
     
     

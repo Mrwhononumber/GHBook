@@ -20,6 +20,8 @@ protocol GFItemVCDelegate: AnyObject {
 // MARK: - Reusable Base Class
 
 
+/// Base class for item information view controllers with a consistent layout
+/// Displays two GFItemInfoView components in a horizontal stack and an action button
 class GFItemInfoVC: UIViewController {
     
     

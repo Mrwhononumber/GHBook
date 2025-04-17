@@ -7,9 +7,9 @@
 
 import UIKit
 
+/// A custom UITextField styled for entering GitHub usernames in the initial screen
 class GFTextField: UITextField {
 
-    
     //MARK: - Initializers
     
     

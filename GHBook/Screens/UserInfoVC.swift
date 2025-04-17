@@ -17,7 +17,6 @@ protocol UserInfoVCDelegate: AnyObject {
 /// displays detailed GitHub user
 class UserInfoVC: UIViewController {
     
-    
     // MARK: - UI Elements
     
     let headerView = UIView()

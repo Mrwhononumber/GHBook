@@ -8,6 +8,8 @@
 
 import UIKit
 
+/// Item info view controller customized for displaying follower statistics
+/// Includes an action button to navigate to the user's followers list
 class GFFollowerItemVC: GFItemInfoVC {
    
     

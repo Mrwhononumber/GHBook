@@ -10,7 +10,6 @@ import UIKit
 /// A reusable view that displays a placeholder message and image when no data is available
 class GFEmptyStateView: UIView {
     
-    
     //MARK: - Properties
     
     

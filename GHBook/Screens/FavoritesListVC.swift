@@ -10,7 +10,6 @@ import UIKit
 /// Displays a list of favorite GitHub users saved by the user
 class FavoritesListVC: UIViewController {
     
-    
     // MARK: - UI Elements
     
     

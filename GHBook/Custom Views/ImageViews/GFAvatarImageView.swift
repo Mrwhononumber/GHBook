@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// A custom `UIImageView` subclass that displays and caches GitHub avatar images
 class GFAvatarImageView: UIImageView {
     
     //MARK: - Properties
@@ -21,7 +22,6 @@ class GFAvatarImageView: UIImageView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-        
     }
     
     
@@ -31,6 +31,7 @@ class GFAvatarImageView: UIImageView {
     
     
     //MARK: - Configuration
+    
     
     private func configure(){
         layer.cornerRadius = 10
@@ -42,7 +43,7 @@ class GFAvatarImageView: UIImageView {
     
     //MARK: - Image Downloading
     
-    /// Downloads the avatar image from a URL string, with caching.
+    /// Downloads the avatar image from a URL string, with caching
     func downloadImage(from urlString: String) {
         
         let cacheKey = NSString(string: urlString)

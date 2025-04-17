@@ -7,9 +7,9 @@
 
 import UIKit
 
+/// A header view controller that displays a GitHub user's profile details
 class GFUserInfoHeaderVC: UIViewController {
 
-    
     // MARK: - Properties
     
     

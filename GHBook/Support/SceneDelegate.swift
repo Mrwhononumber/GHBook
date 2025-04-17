@@ -12,7 +12,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
   
-    
     //MARK: - Scene Lifecycle
     
     
@@ -30,9 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     
-    
     //MARK: - Tab Bar Setup
-    
     
     /// Creates and configures the main tab bar controller with its view controllers
     private func createTabBar() -> UITabBarController {
@@ -46,7 +43,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return tabBar
     }
     
-    
     /// Wraps the Search screen inside a navigation controller
     private func createSearchNavigationController() -> UINavigationController {
         
@@ -58,7 +54,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
     }
     
-    
     /// Wraps the Favorites screen inside a navigation controller.
     private func createFavoritesNavigationController() -> UINavigationController {
         let favoritesListVC = FavoritesListVC()
@@ -69,9 +64,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     
-    
     // MARK: - Global Appearance
-    
     
     /// Sets the global navigation bar tint color
     private func configureNavigationBar(){

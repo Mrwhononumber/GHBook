@@ -7,9 +7,9 @@
 
 import UIKit
 
+/// A custom UILabel subclass styled for titles
 class GFTitleLabel: UILabel {
 
-    
     //MARK: - Initializers
     
     

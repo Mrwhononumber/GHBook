@@ -7,6 +7,8 @@
 
 import UIKit
 
+/// Item info view controller customized for displaying repository statistics
+/// Includes an action button to navigate to the user's GitHub profile
 class GFRepoItemVC: GFItemInfoVC {
    
     //MARK: - Lifecycle

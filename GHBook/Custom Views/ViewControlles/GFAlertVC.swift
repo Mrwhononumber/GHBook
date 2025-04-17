@@ -7,8 +7,9 @@
 
 import UIKit
 
+/// A reusable custom alert view controller that displays a title, message, and a single action button
+/// Used throughout the app to handle error messages and user prompts
 class GFAlertVC: UIViewController {
-    
     
     // MARK: - Properties
     
@@ -100,7 +101,7 @@ class GFAlertVC: UIViewController {
         ])
     }
     
-    /// configures the action button and attaches its tap action to dismiss the alert
+    /// Configures the action button and attaches its tap action to dismiss the alert
     func configureActionButton() {
         containerView.addSubview(actionButton)
         actionButton.setTitle(buttonTitle ?? "OK", for: .normal)

@@ -7,8 +7,8 @@
 
 import UIKit
 
+/// A custom collection view cell that displays a GitHub user's avatar and username in the Followers list
 class FollowerCell: UICollectionViewCell {
-    
     
     // MARK: - Properties
 

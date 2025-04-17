@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// A custom table view cell that displays a GitHub user's avatar and username in the Favorites list
 class FavoriteCell: UITableViewCell {
 
     // MARK: - Properties

@@ -7,9 +7,9 @@
 
 import UIKit
 
+/// A custom UILabel subclass styled for body text
 class GFBodyLabel: UILabel {
 
-    
     //MARK: - Initializers
     
     
@@ -32,6 +32,7 @@ class GFBodyLabel: UILabel {
     
    
     //MARK: - Configuration
+    
     
     private func configure() {
         textColor = .secondaryLabel

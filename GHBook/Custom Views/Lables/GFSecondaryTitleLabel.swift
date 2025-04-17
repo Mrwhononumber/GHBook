@@ -7,9 +7,9 @@
 
 import UIKit
 
+/// A custom UILabel subclass styled for secondary titles  
 class GFSecondaryTitleLabel: UILabel {
 
-    
     //MARK: - Initializers
     
     
